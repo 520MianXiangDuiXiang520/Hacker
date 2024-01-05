@@ -8,7 +8,11 @@
   <nav class="site-navigation">
     <ul>
       <% for (var i in theme.menu){ %>
-        <li><a href="<%- url_for(theme.menu[i]) %>"><%= __(i) %></a></li>
+        <% if(path.split("/")[0].toLowerCase() == i.toLowerCase() || (i == "Home" && path.split("/")[0] == "index.html")){ %>
+          <li class="menu-cover"><a class= "menu-cover-a" href="<%- url_for(theme.menu[i]) %>"><%= __(i) %></a></li>
+        <% } else { %>
+          <li><a class="menu-uncover-a" href="<%- url_for(theme.menu[i]) %>"><%= __(i) %></li>
+        <% } %>
       <% } %>
     </ul>
   </nav>
